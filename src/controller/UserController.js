@@ -17,9 +17,10 @@ const loginUser = async(req,res) => {
     const email = req.body.Email;
     const password = req.body.Password
     const employeebyemail = await userSchema.findOne({Email : email})
-
+    console.log(password)
     if(employeebyemail){
         const isMatch = await hashedPassword.comparePassword(password,employeebyemail.Password)
+        console.log(isMatch)
         if(isMatch){
             res.status(200).json({
                 message : "User Login Successful"
